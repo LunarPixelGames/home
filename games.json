@@ -1,7 +1,7 @@
 {
   "studio_info": {
-    "name": "LunarPixel Games",
-    "tagline": "Passionate about Game Dev",
+    "name": "LunarPixel",
+    "tagline": "Solo Game Dev",
     "about": "Hey! I'm the solo developer behind LunarPixel Games. I like creating polished, fun experiences that I'd actually want to play myself. Thanks for checking out my work!",
     "github_url": "https://github.com/LunarPixelGames"
   },
@@ -16,7 +16,7 @@
     },
     {
       "name": "Coming Soon",
-      "description": "I'm currently prototyping something new. Stay tuned for more updates on my GitHub!",
+      "description": "I'm currently working on something new. Stay tuned for more updates on my GitHub!",
       "show_play_button": false,
       "play_link": "",
       "show_itch_button": false,
