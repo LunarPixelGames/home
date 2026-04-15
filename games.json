@@ -15,6 +15,16 @@
       "play_link": "https://play.google.com/store/apps/details?id=io.github.msameer0.rhythmicrush",
       "itch_link": "https://samispoggers.itch.io/rhythmic-rush",
       "tags": ["Music", "Platformer", "Mobile"]
+    },
+    {
+      "name": "Coming Soon",
+      "status": "In Development",
+      "year": "",
+      "description": "A new game is in the works.",
+      "thumbnail": "",
+      "play_link": "",
+      "itch_link": "",
+      "tags": []
     }
   ]
 }
