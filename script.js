@@ -1,90 +1,81 @@
-// Star Generation Logic
-function createStars() {
-  const container = document.getElementById("stars");
-  const count = 150;
-  
-  for (let i = 0; i < count; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
-    
-    // Random position
-    const x = Math.random() * 100;
-    const y = Math.random() * 100;
-    
-    // Random size
-    const size = Math.random() * 2 + 1;
-    
-    // Random duration for twinkle
-    const duration = Math.random() * 3 + 2;
-    
-    star.style.left = `${x}%`;
-    star.style.top = `${y}%`;
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
-    star.style.setProperty("--duration", `${duration}s`);
-    
-    container.appendChild(star);
-  }
-}
-
 async function initApp() {
   try {
-    // Generate Stars
-    createStars();
-
     // Set Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const yearElement = document.getElementById("year");
+    if (yearElement) yearElement.textContent = new Date().getFullYear();
 
     const response = await fetch("games.json");
+    if (!response.ok) throw new Error("Failed to fetch games.json");
     const data = await response.json();
 
     // Update studio info
-    document.getElementById("studio-name").textContent = data.studio_info.name;
-    document.getElementById("studio-tagline").textContent = data.studio_info.tagline;
-    document.getElementById("studio-about").textContent = data.studio_info.about;
-    document.getElementById("github-link").href = data.studio_info.github_url;
+    const studioName = document.getElementById("studio-name");
+    const studioTagline = document.getElementById("studio-tagline");
+    const studioAbout = document.getElementById("studio-about");
+    const githubLink = document.getElementById("github-link");
 
-    // Render games with animation delay
+    if (studioName) studioName.textContent = data.studio_info.name;
+    if (studioTagline) studioTagline.textContent = data.studio_info.tagline;
+    if (studioAbout) studioAbout.textContent = data.studio_info.about;
+    if (githubLink) githubLink.href = data.studio_info.github_url;
+
+    // Render projects
     const gamesGrid = document.getElementById("games-grid");
-    gamesGrid.innerHTML = data.games
-      .map((game, index) => {
-        const playBtn = game.show_play_button
-          ? `<a href="${game.play_link}" class="btn btn-play" target="_blank">Google Play</a>`
-          : "";
-        const itchBtn = game.show_itch_button
-          ? `<a href="${game.itch_link}" class="btn btn-itch" target="_blank">itch.io</a>`
-          : "";
+    if (gamesGrid) {
+      gamesGrid.innerHTML = data.games
+        .map((game) => {
+          const statusClass = `status-${game.status.toLowerCase().replace(/\s+/g, "-")}`;
+          const tags = (game.tags || [])
+            .map((tag) => `<span class="tag">${tag}</span>`)
+            .join("");
 
-        // Add style for staggered animation
-        const delay = index * 150;
-        return `
-                <article class="game-card" style="opacity: 0; transform: translateY(30px); animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards ${delay}ms">
-                    <div class="card-glow"></div>
-                    <h3>${game.name}</h3>
-                    <p>${game.description}</p>
-                    <div class="button-group">
-                        ${playBtn}
-                        ${itchBtn}
+          const playLink = game.play_link
+            ? `<a href="${game.play_link}" class="btn-link" target="_blank">Play Store</a>`
+            : "";
+          const itchLink = game.itch_link
+            ? `<a href="${game.itch_link}" class="btn-link" target="_blank">itch.io</a>`
+            : "";
+
+          const hasThumbnail = game.thumbnail && game.thumbnail !== "";
+          const thumbnailHtml = hasThumbnail
+            ? `<img src="${game.thumbnail}" alt="${game.name}" loading="lazy">`
+            : "";
+
+          return `
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span class="project-status ${statusClass}">${game.status}</span>
+                        <span class="project-year">${game.year}</span>
+                    </div>
+                    
+                    <div class="project-thumbnail ${hasThumbnail ? "" : "empty"}">
+                        ${thumbnailHtml}
+                    </div>
+
+                    <div class="project-content">
+                        <h3>${game.name}</h3>
+                        <p class="project-desc">${game.description}</p>
+                    </div>
+
+                    <div class="project-tags">
+                        ${tags}
+                    </div>
+
+                    <div class="project-links">
+                        ${playLink}
+                        ${itchLink}
                     </div>
                 </article>
             `;
-      })
-      .join("");
+        })
+        .join("");
+    }
   } catch (err) {
-    console.error("Error loading games:", err);
+    console.error("Error initializing LunarPixel:", err);
+    const studioAbout = document.getElementById("studio-about");
+    if (studioAbout)
+      studioAbout.textContent = "Error loading content. Please refresh.";
   }
 }
-
-// Add animation keyframes dynamically
-const styleSheet = document.createElement("style");
-styleSheet.textContent = `
-  @keyframes slideUp {
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
-  }
-`;
-document.head.appendChild(styleSheet);
 
 document.addEventListener("DOMContentLoaded", initApp);

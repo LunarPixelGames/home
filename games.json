@@ -1,26 +1,20 @@
 {
   "studio_info": {
     "name": "LunarPixel",
-    "tagline": "Solo Game Dev",
-    "about": "Hey! I'm the solo developer behind LunarPixel Games. I like creating polished, fun experiences that I'd actually want to play myself. Thanks for checking out my work!",
+    "tagline": "Solo GameDev",
+    "about": "Hi, I'm a solo Developer who enjoys making games.",
     "github_url": "https://github.com/LunarPixelGames"
   },
   "games": [
     {
       "name": "RhythmicRush",
-      "description": "Sidescrolling Music Platformer",
-      "show_play_button": true,
+      "status": "Released",
+      "year": "2026",
+      "description": "A high-octane music platformer where the level geometry reacts to the beat. Built with a focus on tight controls and synesthesia-inspired visuals.",
+      "thumbnail": "https://img.itch.zone/aW1nLzI2MjIyNDg3LnBuZw==/347x500/uA5yH3.png",
       "play_link": "https://play.google.com/store/apps/details?id=io.github.msameer0.rhythmicrush",
-      "show_itch_button": true,
-      "itch_link": "https://samispoggers.itch.io/rhythmic-rush"
-    },
-    {
-      "name": "Coming Soon",
-      "description": "I'm currently working on something new. Stay tuned for more updates on my GitHub!",
-      "show_play_button": false,
-      "play_link": "",
-      "show_itch_button": false,
-      "itch_link": ""
+      "itch_link": "https://samispoggers.itch.io/rhythmic-rush",
+      "tags": ["Music", "Platformer", "Mobile"]
     }
   ]
 }

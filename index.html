@@ -3,54 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LunarPixel Games</title>
+    <title>LunarPixel | Indie Game Studio</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Atmospheric Background -->
-    <div class="stars-container" id="stars"></div>
-    <div class="nebula nebula-1"></div>
-    <div class="nebula nebula-2"></div>
+    <!-- Subtle Noise Texture Overlay -->
+    <div class="noise-overlay"></div>
 
-    <header>
-      <nav class="top-nav">
-        <div class="logo-container">
-          <img src="favicon.png" alt="LunarPixel Logo" class="site-logo" />
-          <span class="logo">LunarPixel</span>
-        </div>
-      </nav>
-      <div class="hero-content">
-        <h1 id="studio-name">LunarPixel Games</h1>
-        <p id="studio-tagline" class="subtitle">crafting digital dreams</p>
+    <header class="site-header">
+      <div class="logo-area">
+        <img src="favicon.png" alt="LunarPixel Logo" class="site-logo" />
+        <h1 id="studio-name" class="site-title">LunarPixel</h1>
       </div>
+      <p id="studio-tagline" class="site-tagline">
+        independent game developer & digital tinkerer
+      </p>
     </header>
 
-    <main class="container">
+    <main class="content-wrapper">
       <section class="about-section">
-        <p id="studio-about">Loading studio details...</p>
-        <div class="about-links">
-          <a id="github-link" href="#" target="_blank" class="text-link">
-            View on GitHub &rarr;
-          </a>
+        <p id="studio-about" class="about-text">Loading...</p>
+        <nav class="about-links">
+          <a id="github-link" href="#" target="_blank" class="pixel-link"
+            >GitHub</a
+          >
           <a
             id="youtube-link"
             href="https://youtube.com/@LunarPixelGames"
             target="_blank"
-            class="text-link"
+            class="pixel-link"
+            >YouTube</a
           >
-            Visit YouTube &rarr;
-          </a>
-        </div>
+          <a href="mailto:sameer.adnan@proton.me" class="pixel-link">Contact</a>
+        </nav>
       </section>
 
-      <div id="games-grid" class="games-grid">
-        <!-- Injected by JavaScript -->
-      </div>
+      <section class="projects-section">
+        <h2 class="section-title">Projects</h2>
+        <div id="games-grid" class="projects-grid">
+          <!-- Projects injected by JS -->
+        </div>
+      </section>
     </main>
 
-    <footer>
-      <p>&copy; <span id="year"></span> LunarPixel Games. Made with ❤️.</p>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> LunarPixel.</p>
     </footer>
 
     <script src="script.js"></script>
