@@ -418,6 +418,37 @@ body {
   border-bottom-color: var(--accent);
 }
 
+/* Download Count Badge */
+.download-count {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  padding: 2px 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.download-count svg {
+  opacity: 0.7;
+}
+
+.project-card:hover .download-count,
+.project-list-item:hover .download-count {
+  border-color: var(--border-focus);
+  color: var(--text);
+}
+
+.project-card:hover .download-count svg,
+.project-list-item:hover .download-count svg {
+  opacity: 1;
+}
+
 /* Footer */
 .site-footer {
   text-align: center;

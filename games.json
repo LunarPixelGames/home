@@ -14,7 +14,9 @@
       "thumbnail": "https://img.itch.zone/aW1nLzI2MjIyNDg3LnBuZw==/347x500/uA5yH3.png",
       "play_link": "https://play.google.com/store/apps/details?id=io.github.msameer0.rhythmicrush",
       "itch_link": "https://samispoggers.itch.io/rhythmic-rush",
-      "tags": ["Music", "Platformer", "Mobile"]
+      "tags": ["Music", "Platformer", "Mobile"],
+      "itch_downloads": 0,
+      "playstore_downloads": 0
     },
     {
       "name": "Coming Soon",

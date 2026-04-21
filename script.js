@@ -1,6 +1,34 @@
 let gamesData = [];
 let currentView = "card";
 
+function formatDownloads(count) {
+  if (count >= 1000000) return (count / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+  if (count >= 1000) return (count / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+  return count.toString();
+}
+
+function getDownloadHtml(game) {
+  const hasItch = typeof game.itch_downloads === "number" && game.itch_downloads > 0;
+  const hasPlay = typeof game.playstore_downloads === "number" && game.playstore_downloads > 0;
+
+  if (!hasItch && !hasPlay) return "";
+
+  const total = (hasItch ? game.itch_downloads : 0) + (hasPlay ? game.playstore_downloads : 0);
+  const sources = [];
+  if (hasItch) sources.push("itch.io");
+  if (hasPlay) sources.push("Play Store");
+  const tooltip = sources.join(" + ");
+
+  return `<span class="download-count" title="Downloads from ${tooltip}">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    ${formatDownloads(total)}
+  </span>`;
+}
+
 async function initApp() {
   try {
     // Set Year
@@ -96,6 +124,8 @@ function renderGames() {
           ? `<img src="${game.thumbnail}" alt="${game.name}" loading="lazy">`
           : "";
 
+        const downloadHtml = getDownloadHtml(game);
+
         return `
                 <article class="project-card">
                     <div class="project-meta">
@@ -119,6 +149,7 @@ function renderGames() {
                     <div class="project-links">
                         ${playLink}
                         ${itchLink}
+                        ${downloadHtml}
                     </div>
                 </article>
             `;
@@ -141,6 +172,8 @@ function renderGames() {
           ? `<img src="${game.thumbnail}" alt="${game.name}" loading="lazy">`
           : "";
 
+        const downloadHtml = getDownloadHtml(game);
+
         return `
                 <article class="project-list-item">
                     <div class="list-thumbnail">
@@ -155,6 +188,7 @@ function renderGames() {
                     <div class="list-meta">
                         <span class="project-status ${statusClass}">${game.status}</span>
                         <span class="project-year">${game.year}</span>
+                        ${downloadHtml}
                         <div class="list-links">
                             ${playLink}
                             ${itchLink}
